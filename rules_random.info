@@ -1,0 +1,5 @@
+name = Rules random
+description = Various random selection conditions for rules to be used for campaigns.
+dependencies[] = rules
+package = custom
+core = 7.x

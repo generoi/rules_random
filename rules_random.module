@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * TODO: Enter file description here.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function rules_random_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+function rules_random_permission() {
+  return array(
+    'view random selected' => array(
+      'title' => t('View randomly selected winners'),
+      'description' => t('View randomly selected winners administration page.'),
+    ),
+  );
+}

@@ -1,0 +1,39 @@
+<?php
+
+function rules_random_schema() {
+  $schema['rules_random'] = array(
+    'description' => 'The table of random selections with rules',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'The unique identifier',
+      ),
+      'cid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The unique draw identifier.',
+      ),
+      'value' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'description' => 'Custom value to be stored to identify the winner.',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The time this winner was selected',
+      ),
+    ),
+    'indexes' => array(
+      'created' => array('created'),
+      'cid' => array('cid'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  return $schema;
+}

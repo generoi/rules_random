@@ -69,6 +69,8 @@ function rules_random_condition_random($cid, $value, $probability, $draw_hours) 
     $hour = (int) date('H');
     $active_hour = NULL;
 
+    // Sort it from high to low so the latest hours is active.
+    rsort($draw_hours);
     // Find out which hour we're on.
     foreach ($draw_hours as $draw_hour) {
       if ($hour >= $draw_hour) {
@@ -79,6 +81,7 @@ function rules_random_condition_random($cid, $value, $probability, $draw_hours) 
     }
     // The current time is before the first draw, no drawing.
     if (is_null($active_hour)) {
+      $is_selected = FALSE;
       return FALSE;
     }
 
@@ -115,7 +118,6 @@ function rules_random_condition_random($cid, $value, $probability, $draw_hours) 
               'created' => time(),
             ))
             ->execute();
-          $is_selected = TRUE;
         }
       }
       lock_release('rules_random_select');
